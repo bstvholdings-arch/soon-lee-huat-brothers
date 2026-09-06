@@ -32,3 +32,4 @@ npm run dev
 ## Deploy (Vercel)
 
 Connect the Git repo to Vercel and add the same `NEXT_PUBLIC_SUPABASE_*` environment variables. After the first deploy, add your Vercel domain under Supabase **Authentication → URL configuration**.
+"# test" 
