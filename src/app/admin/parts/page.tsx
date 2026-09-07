@@ -155,17 +155,20 @@ function Input({
   value,
   onChange,
   type = "text",
+  placeholder,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   type?: string;
+  placeholder?: string;
 }) {
   return (
     <label className="block text-sm">
       {label}
       <input
         type={type}
+        placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"

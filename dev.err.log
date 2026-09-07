@@ -330,3 +330,7 @@ Error: Module not found: Can't resolve '/lib/supabase/client'
   6 | export async function POST(req: NextRequest) {
 
 https://nextjs.org/docs/messages/module-not-found 
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+⨯ Failed to load next.config.ts, see more info here https://nextjs.org/docs/messages/next-config-error
+SyntaxError: Identifier 'nextConfig' has already been declared
+    at <unknown> (C:\Users\Sheinwong88\projects\soon-lee-huat-motor\next.config.compiled.js:23)

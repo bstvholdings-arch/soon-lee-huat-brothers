@@ -10,8 +10,9 @@ export async function GET(req: NextRequest) {
   if (key) void touchApiKey(key);
 
   const content = await getSiteContent();
+  const rows = Object.values(content);
   const map: Record<string, string> = {};
-  for (const row of content ?? []) {
+  for (const row of rows) {
     map[row.section_key] = row.content_en;
   }
   return NextResponse.json({ content: map });

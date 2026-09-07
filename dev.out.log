@@ -278,3 +278,23 @@
  GET /admin/motorcycles 200 in 544ms (next.js: 143ms, proxy.ts: 321ms, application-code: 80ms)
  GET /admin/motorcycles 200 in 525ms (next.js: 54ms, proxy.ts: 296ms, application-code: 175ms)
  GET / 200 in 542ms (next.js: 20ms, application-code: 522ms)
+ GET / 200 in 1631ms (next.js: 114ms, application-code: 1517ms)
+ GET /admin 200 in 831ms (next.js: 56ms, proxy.ts: 726ms, application-code: 49ms)
+ GET /admin/parts 200 in 323ms (next.js: 69ms, proxy.ts: 185ms, application-code: 69ms)
+ GET /admin/motorcycles 200 in 281ms (next.js: 52ms, proxy.ts: 186ms, application-code: 44ms)
+ GET /admin/motorcycles/cdd9fc03-a0a3-45c8-b190-ee0b01b7cbf7 200 in 1112ms (next.js: 493ms, proxy.ts: 274ms, application-code: 346ms)
+ GET /admin/account 200 in 234ms (next.js: 42ms, proxy.ts: 154ms, application-code: 38ms)
+ GET /admin/content 200 in 291ms (next.js: 33ms, proxy.ts: 210ms, application-code: 48ms)
+ GET /admin/orders 200 in 913ms (next.js: 51ms, proxy.ts: 829ms, application-code: 33ms)
+ GET /admin/api-keys 200 in 374ms (next.js: 13ms, proxy.ts: 327ms, application-code: 35ms)
+ GET /admin/brands 200 in 283ms (next.js: 38ms, proxy.ts: 209ms, application-code: 36ms)
+ GET /admin 200 in 615ms (next.js: 5ms, proxy.ts: 502ms, application-code: 108ms)
+ GET /admin/api-keys 200 in 502ms (next.js: 10ms, proxy.ts: 454ms, application-code: 37ms)
+ GET / 200 in 2.5s (next.js: 283ms, application-code: 2.2s)
+ GET /admin 200 in 983ms (next.js: 41ms, proxy.ts: 482ms, application-code: 460ms)
+▲ Next.js 16.3.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.110.159:3000
+- Environments: .env.local
+✓ Ready in 941ms
+[?25h

@@ -1,6 +1,6 @@
 import { createServerSupabase } from "./supabase/server";
 import { contentMap } from "./i18n";
-import type { Brand, Motorcycle, Part, SiteContent } from "./types";
+import type { Brand, Motorcycle, MotorcycleType, Part, SiteContent } from "./types";
 
 const bikeSelect = "*, vehicle_images(*)";
 
@@ -11,14 +11,13 @@ export async function getSiteContent() {
   return contentMap((data ?? []) as SiteContent[]);
 }
 
-export async function getMotorcycles(type: "new" | "used") {
+export async function getMotorcycles(type?: MotorcycleType) {
   const supabase = await createServerSupabase();
   if (!supabase) return [] as Motorcycle[];
-  const { data } = await supabase
-    .from("motorcycles")
-    .select(bikeSelect)
-    .eq("type", type)
-    .order("created_at", { ascending: false });
+  let query = supabase.from("motorcycles").select(bikeSelect);
+  if (type === "new" || type === "used") query = query.eq("type", type);
+  query = query.order("created_at", { ascending: false });
+  const { data } = await query;
   return (data ?? []) as Motorcycle[];
 }
 
