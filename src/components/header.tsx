@@ -36,10 +36,10 @@ export function Header({
         <Link href="/" className="flex min-w-0 items-center gap-3">
           {logo ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={logo} alt={companyName} className="h-10 w-10 rounded-lg object-contain" />
+            <img src={logo} alt={companyName} className="h-20 w-20 rounded-lg object-contain" />
           ) : null}
           <div className="min-w-0">
-            <p className="truncate text-sm font-bold tracking-tight sm:text-base">{companyName}</p>
+            <p className="truncate text-sm font-bold tracking-tight text-blue-600 sm:text-base">{companyName}</p>
             <p className="hidden text-xs text-zinc-500 sm:block">Kepala Batas · Penang</p>
           </div>
         </Link>
@@ -61,7 +61,7 @@ export function Header({
             href={wa}
             target="_blank"
             rel="noreferrer"
-            className="rounded-lg bg-zinc-900 px-3 py-2 text-xs font-semibold text-white hover:bg-zinc-700"
+            className="rounded-lg bg-cyan-500 px-3 py-2 text-xs font-semibold text-white hover:bg-cyan-600"
           >
             WhatsApp
           </a>

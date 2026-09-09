@@ -59,7 +59,7 @@ export function LoanProvider({
       <button
         type="button"
         onClick={() => openLoan()}
-        className="fixed bottom-5 right-5 z-40 rounded-full bg-zinc-900 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-zinc-900/20 hover:bg-zinc-700 md:bottom-8 md:right-8"
+        className="fixed bottom-5 right-5 z-40 rounded-full bg-red-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-red-900/40 hover:bg-red-500 md:bottom-8 md:right-8"
       >
         {t("floatingLoan")}
       </button>
