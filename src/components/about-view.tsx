@@ -1,6 +1,6 @@
 "use client";
 
-import { contentText, telLink, mapLink } from "@/lib/i18n";
+import { contentText, telLink } from "@/lib/i18n";
 import type { ContentMap } from "@/lib/types";
 import { useLocale } from "./locale-provider";
 
@@ -8,7 +8,6 @@ export function AboutView({ content }: { content: ContentMap }) {
   const { locale, t } = useLocale();
   const company = contentText(content, "company_name", locale, "Soon Lee Huat Brothers Motor (KB) Sdn. Bhd.");
   const about = contentText(content, "about", locale);
-  const address = contentText(content, "address", locale);
   const hours = contentText(content, "hours", locale);
   const phone = contentText(content, "phone", locale);
   const maps = contentText(content, "maps_url", locale);
@@ -25,13 +24,6 @@ export function AboutView({ content }: { content: ContentMap }) {
       <section className="rounded-2xl border border-zinc-200 bg-white p-6">
         <h2 className="text-xl font-semibold text-zinc-900">{t("location")}</h2>
         <div className="mt-4 space-y-2 text-zinc-700">
-          {address ? (
-            <p>
-              <a href={mapLink(address)} target="_blank" rel="noreferrer" className="text-zinc-900 hover:underline">
-                {address}
-              </a>
-            </p>
-          ) : null}
           {hours ? <p>{hours}</p> : null}
           {phone ? (
             <p>
@@ -43,7 +35,7 @@ export function AboutView({ content }: { content: ContentMap }) {
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
           {maps ? (
-            <a href={maps} target="_blank" rel="noreferrer" className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white">
+            <a href={maps} target="_blank" rel="noreferrer" className="rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-500">
               {t("maps")}
             </a>
           ) : null}
