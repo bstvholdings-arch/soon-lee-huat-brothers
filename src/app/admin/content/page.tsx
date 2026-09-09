@@ -136,7 +136,7 @@ export default function AdminContentPage() {
             const row = get(key);
             const multiline = key === "about" || key.includes("hero") || key === "address" || key === "hours";
             return (
-              <fieldset key={key} className="rounded-2xl border border-white/10 p-4">
+              <fieldset key={key} className="rounded-2xl border border-zinc-200 bg-white p-4">
                 <legend className="px-1 text-sm font-semibold text-zinc-500">{key}</legend>
                 <div className="mt-3 grid gap-3">
                   <LangField
@@ -161,7 +161,7 @@ export default function AdminContentPage() {
               </fieldset>
             );
           })}
-          <fieldset className="rounded-2xl border border-white/10 p-4">
+          <fieldset className="rounded-2xl border border-zinc-200 bg-white p-4">
             <legend className="px-1 text-sm font-semibold text-zinc-500">gallery</legend>
             <input type="file" accept="image/*" className="mt-3 text-sm" onChange={(e) => void addGallery(e.target.files?.[0])} />
             <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
@@ -180,7 +180,7 @@ export default function AdminContentPage() {
               ))}
             </div>
           </fieldset>
-          <fieldset className="rounded-2xl border border-white/10 p-4">
+          <fieldset className="rounded-2xl border border-zinc-200 bg-white p-4">
             <legend className="px-1 text-sm font-semibold text-zinc-500">logo</legend>
             <input type="file" accept="image/*" className="mt-3 text-sm" onChange={(e) => void setLogo(e.target.files?.[0])} />
             {(logo.images ?? []).map((url) => (
@@ -197,7 +197,7 @@ export default function AdminContentPage() {
               </div>
             ))}
           </fieldset>
-          <fieldset className="rounded-2xl border border-white/10 p-4">
+          <fieldset className="rounded-2xl border border-zinc-200 bg-white p-4">
             <legend className="px-1 text-sm font-semibold text-zinc-500">hero_image</legend>
             <input type="file" accept="image/*" className="mt-3 text-sm" onChange={(e) => void setHeroImage(e.target.files?.[0])} />
             {(heroImage.images ?? []).map((url) => (
@@ -214,7 +214,7 @@ export default function AdminContentPage() {
               </div>
             ))}
           </fieldset>
-          {error ? <p className="text-sm text-red-400">{error}</p> : null}
+          {error ? <p className="text-sm text-red-500">{error}</p> : null}
           <button type="submit" disabled={saving} className="rounded-xl bg-zinc-900 px-5 py-2 font-semibold text-white disabled:opacity-50">
             {saving ? "Saving..." : "Save content"}
           </button>
@@ -243,13 +243,13 @@ function LangField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           rows={4}
-          className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+          className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
         />
       ) : (
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+          className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
         />
       )}
     </label>

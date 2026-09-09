@@ -138,7 +138,7 @@ export function MotorcycleDetail({ bike, whatsapp }: { bike: Motorcycle; whatsap
             href={whatsappLink(whatsapp, t("inquireBike", { name: title }))}
             target="_blank"
             rel="noreferrer"
-            className="rounded-xl bg-emerald-500 py-3 text-center font-semibold text-black hover:bg-emerald-400"
+            className="rounded-xl bg-zinc-100 py-3 text-center font-semibold text-zinc-700"
           >
             {t("waInquiry")}
           </a>

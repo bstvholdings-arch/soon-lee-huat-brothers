@@ -30,7 +30,7 @@ export function MotorcycleCard({
           <div className="flex h-full items-center justify-center text-sm text-zinc-500">—</div>
         )}
         {bike.status === "sold" ? (
-          <span className="absolute left-3 top-3 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-semibold uppercase text-white">
+          <span className="absolute left-3 top-3 rounded-full bg-zinc-900 px-3 py-1 text-xs font-semibold uppercase text-white">
             {t("sold")}
           </span>
         ) : null}
@@ -53,7 +53,7 @@ export function MotorcycleCard({
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           <Link
             href={`/motorcycles/${bike.id}`}
-            className="rounded-xl bg-zinc-900 px-3 py-2 text-center text-sm font-semibold text-white"
+            className="rounded-xl bg-zinc-900 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-700"
           >
             {t("viewDetails")}
           </Link>
@@ -61,7 +61,7 @@ export function MotorcycleCard({
             href={whatsappLink(whatsapp, t("inquireBike", { name: title }))}
             target="_blank"
             rel="noreferrer"
-            className="rounded-xl bg-emerald-500 px-3 py-2 text-center text-sm font-semibold text-black"
+            className="rounded-xl bg-zinc-100 px-3 py-2 text-center text-sm font-semibold text-zinc-700"
           >
             {t("waInquiry")}
           </a>

@@ -16,12 +16,12 @@ export default function AdminHomePage() {
       <AdminNav />
       <div className="mx-auto max-w-6xl px-4 py-8">
         <h1 className="text-2xl font-bold">Dashboard</h1>
-        <p className="mt-2 text-zinc-400">Manage all public website content from these modules.</p>
+        <p className="mt-2 text-zinc-500">Manage all public website content from these modules.</p>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {cards.map((card) => (
-            <Link key={card.href} href={card.href} className="rounded-2xl border border-white/10 bg-zinc-900 p-5 hover:border-red-500">
-              <h2 className="text-lg font-semibold">{card.title}</h2>
-              <p className="mt-2 text-sm text-zinc-400">{card.body}</p>
+            <Link key={card.href} href={card.href} className="rounded-2xl border border-zinc-200 bg-white p-5 hover:border-zinc-900">
+              <h2 className="text-lg font-semibold text-zinc-900">{card.title}</h2>
+              <p className="mt-2 text-sm text-zinc-500">{card.body}</p>
             </Link>
           ))}
         </div>

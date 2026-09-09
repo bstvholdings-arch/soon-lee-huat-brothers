@@ -77,61 +77,61 @@ export default function AdminApiKeysPage() {
       <AdminNav />
       <div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
         <h1 className="text-2xl font-bold">API keys</h1>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-zinc-500">
           Generate keys so external apps can read site data via the API. Pass a key as the{" "}
-          <code className="rounded bg-zinc-800 px-1">x-api-key</code> header (or{" "}
-          <code className="rounded bg-zinc-800 px-1">Bearer</code> token).
+          <code className="rounded bg-zinc-100 px-1">x-api-key</code> header (or{" "}
+          <code className="rounded bg-zinc-100 px-1">Bearer</code> token).
         </p>
 
         {!configured ? (
-          <p className="text-sm text-amber-400">
+          <p className="text-sm text-amber-600">
             Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local, then restart the
             dev server.
           </p>
         ) : null}
 
         {error ? (
-          <p className="rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-300">{error}</p>
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
         ) : null}
 
         {newKey ? (
-          <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-4">
-            <p className="text-sm font-semibold text-emerald-300">Key created (shown once — copy it now)</p>
-            <code className="mt-2 block break-all rounded-lg bg-zinc-950 px-3 py-2 text-sm text-white">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+            <p className="text-sm font-semibold text-emerald-700">Key created (shown once — copy it now)</p>
+            <code className="mt-2 block break-all rounded-lg bg-white px-3 py-2 text-sm text-zinc-900 ring-1 ring-zinc-200">
               {newKey}
             </code>
             <button
               type="button"
               onClick={() => setNewKey(null)}
-              className="mt-2 text-xs text-zinc-400 hover:text-white"
+              className="mt-2 text-xs text-zinc-500 hover:text-zinc-900"
             >
               Dismiss
             </button>
           </div>
         ) : null}
 
-        <form onSubmit={onCreate} className="flex flex-wrap items-end gap-3 rounded-2xl border border-white/10 bg-zinc-900 p-5">
+        <form onSubmit={onCreate} className="flex flex-wrap items-end gap-3 rounded-2xl border border-zinc-200 bg-white p-5">
           <label className="block flex-1 text-sm">
             Key name (optional)
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Mobile app"
-              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-950 px-3 py-2"
+              className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
             />
           </label>
           <button
             type="submit"
             disabled={busy || !configured}
-            className="rounded-xl bg-red-600 px-5 py-2 font-semibold disabled:opacity-50"
+            className="rounded-xl bg-zinc-900 px-5 py-2 font-semibold text-white disabled:opacity-50"
           >
             Generate key
           </button>
         </form>
 
-        <div className="overflow-hidden rounded-2xl border border-white/10">
+        <div className="overflow-hidden rounded-2xl border border-zinc-200">
           <table className="w-full text-sm">
-            <thead className="bg-zinc-900 text-zinc-400">
+            <thead className="bg-zinc-50 text-zinc-500">
               <tr>
                 <th className="px-3 py-2 text-left">Name</th>
                 <th className="px-3 py-2 text-left">Key</th>
@@ -148,12 +148,12 @@ export default function AdminApiKeysPage() {
                 </tr>
               ) : (
                 rows.map((row) => (
-                  <tr key={row.id} className="border-t border-white/10">
+                  <tr key={row.id} className="border-t border-zinc-200">
                     <td className="px-3 py-2">{row.name}</td>
-                    <td className="px-3 py-2 font-mono text-xs text-zinc-300">
+                    <td className="px-3 py-2 font-mono text-xs text-zinc-700">
                       {row.revoked ? "revoked" : `${row.key.slice(0, 12)}…`}
                     </td>
-                    <td className="px-3 py-2 text-zinc-400">
+                    <td className="px-3 py-2 text-zinc-500">
                       {row.last_used_at ? new Date(row.last_used_at).toLocaleString() : "—"}
                     </td>
                     <td className="px-3 py-2 text-right">
@@ -163,7 +163,7 @@ export default function AdminApiKeysPage() {
                         <button
                           type="button"
                           onClick={() => onRevoke(row.id)}
-                          className="text-red-400 hover:underline"
+                          className="text-red-600 hover:underline"
                         >
                           Revoke
                         </button>
@@ -176,9 +176,9 @@ export default function AdminApiKeysPage() {
           </table>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-zinc-900 p-5 text-sm text-zinc-300">
-          <p className="font-semibold text-white">Example requests</p>
-          <pre className="mt-2 overflow-x-auto rounded-lg bg-zinc-950 p-3 text-xs">{`curl https://your-domain/api/site -H "x-api-key: YOUR_KEY"
+        <div className="rounded-2xl border border-zinc-200 bg-white p-5 text-sm text-zinc-600">
+          <p className="font-semibold text-zinc-900">Example requests</p>
+          <pre className="mt-2 overflow-x-auto rounded-lg bg-zinc-50 p-3 text-xs ring-1 ring-zinc-200">{`curl https://your-domain/api/site -H "x-api-key: YOUR_KEY"
 curl https://your-domain/api/motorcycles?type=new -H "x-api-key: YOUR_KEY"
 curl https://your-domain/api/parts -H "x-api-key: YOUR_KEY"`}</pre>
         </div>

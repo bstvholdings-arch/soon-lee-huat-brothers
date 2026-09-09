@@ -35,7 +35,7 @@ export function HomeView({
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" className="h-full w-full object-cover" />
         ) : (
-          <span className="text-sm text-zinc-400">Hero photo</span>
+          <span className="text-sm text-zinc-500">Hero photo</span>
         )}
       </div>
       <div className="mt-10">

@@ -80,19 +80,19 @@ export default function AdminAccountPage() {
             dev server.
           </p>
         ) : null}
-        <p className="text-sm text-zinc-400">
-          Signed in as <span className="text-white">{currentEmail || "…"}</span>
+        <p className="text-sm text-zinc-500">
+          Signed in as <span className="text-zinc-900">{currentEmail || "…"}</span>
         </p>
         {msg ? (
-          <p className="rounded-lg bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300">{msg}</p>
+          <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">{msg}</p>
         ) : null}
         {error ? (
-          <p className="rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-300">{error}</p>
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
         ) : null}
 
         <form
           onSubmit={onChangePassword}
-          className="space-y-4 rounded-2xl border border-white/10 bg-zinc-900 p-5"
+          className="space-y-4 rounded-2xl border border-zinc-200 bg-white p-5"
         >
           <h2 className="text-lg font-semibold">Change password</h2>
           <label className="block text-sm">
@@ -103,7 +103,7 @@ export default function AdminAccountPage() {
               minLength={6}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-950 px-3 py-2"
+              className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
             />
           </label>
           <label className="block text-sm">
@@ -114,13 +114,13 @@ export default function AdminAccountPage() {
               minLength={6}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-950 px-3 py-2"
+              className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
             />
           </label>
           <button
             type="submit"
             disabled={busy || !configured}
-            className="rounded-xl bg-red-600 px-5 py-2 font-semibold disabled:opacity-50"
+            className="rounded-xl bg-zinc-900 px-5 py-2 font-semibold text-white disabled:opacity-50"
           >
             Update password
           </button>
@@ -128,7 +128,7 @@ export default function AdminAccountPage() {
 
         <form
           onSubmit={onChangeEmail}
-          className="space-y-4 rounded-2xl border border-white/10 bg-zinc-900 p-5"
+          className="space-y-4 rounded-2xl border border-zinc-200 bg-white p-5"
         >
           <h2 className="text-lg font-semibold">Change email</h2>
           <label className="block text-sm">
@@ -138,7 +138,7 @@ export default function AdminAccountPage() {
               required
               value={newEmail}
               onChange={(e) => setNewEmail(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-950 px-3 py-2"
+              className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
             />
           </label>
           <p className="text-xs text-zinc-500">
@@ -147,7 +147,7 @@ export default function AdminAccountPage() {
           <button
             type="submit"
             disabled={busy || !configured}
-            className="rounded-xl bg-red-600 px-5 py-2 font-semibold disabled:opacity-50"
+            className="rounded-xl bg-zinc-900 px-5 py-2 font-semibold text-white disabled:opacity-50"
           >
             Send email change
           </button>

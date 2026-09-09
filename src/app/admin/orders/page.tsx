@@ -78,35 +78,35 @@ export default function AdminOrdersPage() {
           <button
             type="button"
             onClick={() => load()}
-            className="rounded-lg border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10"
+            className="rounded-lg border border-zinc-200 px-3 py-1.5 text-sm hover:bg-zinc-50"
           >
             Refresh
           </button>
         </div>
 
         {!configured ? (
-          <p className="text-sm text-amber-400">
+          <p className="text-sm text-amber-600">
             Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local, then restart the
             dev server.
           </p>
         ) : null}
         {error ? (
-          <p className="rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-300">{error}</p>
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
         ) : null}
 
         {orders.length === 0 ? (
-          <p className="rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-400">
-            No orders yet. Orders pushed to <code className="rounded bg-zinc-800 px-1">/api/v1/orders</code> will
+          <p className="rounded-2xl border border-zinc-200 bg-white p-6 text-zinc-500">
+            No orders yet. Orders pushed to <code className="rounded bg-zinc-100 px-1">/api/v1/orders</code> will
             appear here as “待发货 / Pending shipment”.
           </p>
         ) : (
           <div className="space-y-4">
             {orders.map((o) => (
-              <div key={o.id} className="rounded-2xl border border-white/10 bg-zinc-900 p-5">
+              <div key={o.id} className="rounded-2xl border border-zinc-200 bg-white p-5">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
-                    <p className="font-semibold text-white">{o.order_number}</p>
-                    <p className="text-sm text-zinc-400">
+                    <p className="font-semibold text-zinc-900">{o.order_number}</p>
+                    <p className="text-sm text-zinc-500">
                       {o.buyer_name}
                       {o.buyer_phone ? ` · ${o.buyer_phone}` : ""}
                       {o.buyer_email ? ` · ${o.buyer_email}` : ""}
@@ -116,12 +116,12 @@ export default function AdminOrdersPage() {
                       {o.external_ref ? ` · ref: ${o.external_ref}` : ""}
                     </p>
                   </div>
-                  <span className="rounded-full bg-red-500/15 px-3 py-1 text-xs font-medium text-red-300">
+                  <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700">
                     {STATUS_LABEL[o.status] ?? o.status}
                   </span>
                 </div>
 
-                <ul className="mt-3 space-y-1 text-sm text-zinc-300">
+                <ul className="mt-3 space-y-1 text-sm text-zinc-600">
                   {o.items?.map((it, i) => (
                     <li key={i} className="flex justify-between">
                       <span>
@@ -143,7 +143,7 @@ export default function AdminOrdersPage() {
                     type="button"
                     disabled={busyId === o.id || o.status === "shipped"}
                     onClick={() => setStatus(o.id, "shipped")}
-                    className="rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white disabled:opacity-50"
+                    className="rounded-lg bg-zinc-900 px-3 py-1.5 text-sm font-semibold text-white disabled:opacity-50"
                   >
                     Mark shipped
                   </button>
@@ -151,7 +151,7 @@ export default function AdminOrdersPage() {
                     type="button"
                     disabled={busyId === o.id || o.status === "delivered"}
                     onClick={() => setStatus(o.id, "delivered")}
-                    className="rounded-lg border border-white/15 px-3 py-1.5 text-sm disabled:opacity-50"
+                    className="rounded-lg border border-zinc-200 px-3 py-1.5 text-sm disabled:opacity-50"
                   >
                     Mark delivered
                   </button>
@@ -159,7 +159,7 @@ export default function AdminOrdersPage() {
                     type="button"
                     disabled={busyId === o.id || o.status === "cancelled"}
                     onClick={() => setStatus(o.id, "cancelled")}
-                    className="rounded-lg border border-red-500/40 px-3 py-1.5 text-sm text-red-300 disabled:opacity-50"
+                    className="rounded-lg border border-red-500/40 px-3 py-1.5 text-sm text-red-600 disabled:opacity-50"
                   >
                     Cancel
                   </button>

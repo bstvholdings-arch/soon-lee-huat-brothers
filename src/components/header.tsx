@@ -105,7 +105,7 @@ function LanguageSwitcher({
     { id: "zh", label: "中文" },
   ];
   return (
-    <div className="flex overflow-hidden rounded-lg border border-white/15 text-xs font-semibold">
+    <div className="flex overflow-hidden rounded-lg border border-zinc-200 text-xs font-semibold">
       {options.map((opt) => (
         <button
           key={opt.id}

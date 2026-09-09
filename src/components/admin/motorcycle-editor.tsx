@@ -214,7 +214,7 @@ export function MotorcycleEditor({ initial }: { initial?: Motorcycle }) {
         <textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+          className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
           rows={3}
         />
       </label>
@@ -224,14 +224,14 @@ export function MotorcycleEditor({ initial }: { initial?: Motorcycle }) {
           <button
             type="button"
             onClick={() => setImages((list) => [...list, emptyImage()])}
-            className="rounded-lg bg-white/10 px-3 py-1.5 text-sm"
+            className="rounded-lg bg-zinc-100 px-3 py-1.5 text-sm text-zinc-700"
           >
             Add image
           </button>
         </div>
         <div className="space-y-4">
           {images.map((img, index) => (
-            <div key={img.localId} className="grid gap-3 rounded-2xl border border-white/10 p-4 md:grid-cols-2">
+            <div key={img.localId} className="grid gap-3 rounded-2xl border border-zinc-200 bg-white p-4 md:grid-cols-2">
               <Field
                 label="Colour EN"
                 value={img.color_name_en}
@@ -281,7 +281,7 @@ export function MotorcycleEditor({ initial }: { initial?: Motorcycle }) {
               </label>
               <button
                 type="button"
-                className="text-left text-sm text-red-400"
+                className="text-left text-sm text-red-600 hover:underline"
                 onClick={() => setImages((list) => list.filter((_, i) => i !== index))}
               >
                 Remove image
@@ -290,8 +290,8 @@ export function MotorcycleEditor({ initial }: { initial?: Motorcycle }) {
           ))}
         </div>
       </div>
-      {error ? <p className="text-sm text-red-400">{error}</p> : null}
-      <button type="submit" disabled={saving} className="rounded-xl bg-red-600 px-5 py-2 font-semibold disabled:opacity-50">
+      {error ? <p className="text-sm text-red-500">{error}</p> : null}
+      <button type="submit" disabled={saving} className="rounded-xl bg-zinc-900 px-5 py-2 font-semibold text-white disabled:opacity-50">
         {saving ? "Saving..." : "Save motorcycle"}
       </button>
     </form>
@@ -330,7 +330,7 @@ function Field({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+        className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
       />
     </label>
   );
@@ -353,7 +353,7 @@ function Select({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+        className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
       >
         {options.map((opt) => (
           <option key={opt} value={opt}>
@@ -404,14 +404,14 @@ export function MotorcycleList() {
       <div className="mx-auto max-w-6xl px-4 py-8">
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-2xl font-bold">Motorcycles</h1>
-          <Link href="/admin/motorcycles/new" className="rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold">
+          <Link href="/admin/motorcycles/new" className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white">
             Add motorcycle
           </Link>
         </div>
-        {error ? <p className="mb-4 text-sm text-red-400">{error}</p> : null}
-        <div className="overflow-x-auto rounded-2xl border border-white/10">
+        {error ? <p className="mb-4 text-sm text-red-500">{error}</p> : null}
+        <div className="overflow-x-auto rounded-2xl border border-zinc-200">
           <table className="w-full text-left text-sm">
-            <thead className="bg-white/5 text-zinc-400">
+            <thead className="bg-zinc-50 text-zinc-500">
               <tr>
                 <th className="px-4 py-3">Title</th>
                 <th className="px-4 py-3">Type</th>
@@ -423,17 +423,17 @@ export function MotorcycleList() {
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.id} className="border-t border-white/10">
+                <tr key={row.id} className="border-t border-zinc-200">
                   <td className="px-4 py-3">{row.title_en}</td>
                   <td className="px-4 py-3">{row.type}</td>
                   <td className="px-4 py-3">{row.price}</td>
                   <td className="px-4 py-3">{(row.specs as { engine_type?: string } | undefined)?.engine_type ?? "—"}</td>
                   <td className="px-4 py-3">{row.status}</td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/admin/motorcycles/${row.id}`} className="mr-3 text-red-400">
+                    <Link href={`/admin/motorcycles/${row.id}`} className="mr-3 text-zinc-700 hover:underline">
                       Edit
                     </Link>
-                    <button type="button" onClick={() => remove(row.id)} className="text-zinc-400">
+                    <button type="button" onClick={() => remove(row.id)} className="text-zinc-500 hover:text-red-600">
                       Delete
                     </button>
                   </td>

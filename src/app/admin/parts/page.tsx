@@ -73,7 +73,7 @@ export default function AdminPartsPage() {
       <AdminNav />
       <div className="mx-auto max-w-6xl px-4 py-8">
         <h1 className="mb-6 text-2xl font-bold">Parts</h1>
-        <form onSubmit={onSubmit} className="mb-8 grid gap-3 rounded-2xl border border-white/10 p-4 md:grid-cols-2">
+        <form onSubmit={onSubmit} className="mb-8 grid gap-3 rounded-2xl border border-zinc-200 bg-white p-4 md:grid-cols-2">
           <Input label="Name EN" value={form.name_en} onChange={(v) => setForm({ ...form, name_en: v })} />
           <Input label="Name BM" value={form.name_bm} onChange={(v) => setForm({ ...form, name_bm: v })} />
           <Input label="Name 中文" value={form.name_zh} onChange={(v) => setForm({ ...form, name_zh: v })} />
@@ -91,7 +91,7 @@ export default function AdminPartsPage() {
             <select
               value={form.stock_status}
               onChange={(e) => setForm({ ...form, stock_status: e.target.value as PartStock })}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+              className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
             >
               <option value="in_stock">in_stock</option>
               <option value="low">low</option>
@@ -102,24 +102,24 @@ export default function AdminPartsPage() {
             Image
             <input type="file" accept="image/*" className="mt-1 block w-full text-sm" onChange={(e) => setFile(e.target.files?.[0])} />
           </label>
-          {error ? <p className="text-sm text-red-400 md:col-span-2">{error}</p> : null}
-          <button type="submit" className="rounded-xl bg-red-600 px-4 py-2 font-semibold md:col-span-2">
+          {error ? <p className="text-sm text-red-500 md:col-span-2">{error}</p> : null}
+          <button type="submit" className="rounded-xl bg-zinc-900 px-4 py-2 font-semibold text-white md:col-span-2">
             {editingId ? "Update part" : "Add part"}
           </button>
         </form>
         <div className="space-y-3">
           {rows.map((row) => (
-            <div key={row.id} className="flex items-center justify-between rounded-xl border border-white/10 px-4 py-3">
+            <div key={row.id} className="flex items-center justify-between rounded-xl border border-zinc-200 bg-white px-4 py-3">
               <div>
                 <p className="font-medium">{row.name_en}</p>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-zinc-500">
                   {row.category} · RM {row.price}
                 </p>
               </div>
               <div className="flex gap-3 text-sm">
                 <button
                   type="button"
-                  className="text-red-400"
+                  className="text-zinc-700 hover:underline"
                   onClick={() => {
                     setEditingId(row.id);
                     setForm({
@@ -138,7 +138,7 @@ export default function AdminPartsPage() {
                 >
                   Edit
                 </button>
-                <button type="button" className="text-zinc-400" onClick={() => remove(row.id)}>
+                <button type="button" className="text-zinc-500 hover:text-red-600" onClick={() => remove(row.id)}>
                   Delete
                 </button>
               </div>
@@ -171,7 +171,7 @@ function Input({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+        className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
       />
     </label>
   );

@@ -76,14 +76,14 @@ export default function AdminBrandsPage() {
       <AdminNav />
       <div className="mx-auto max-w-4xl px-4 py-8">
         <h1 className="mb-6 text-2xl font-bold">Brands</h1>
-        <form onSubmit={onSubmit} className="mb-8 grid gap-3 rounded-2xl border border-white/10 p-4">
+        <form onSubmit={onSubmit} className="mb-8 grid gap-3 rounded-2xl border border-zinc-200 bg-white p-4">
           <label className="text-sm">
             Brand name
             <input
               value={brand_name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+              className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
             />
           </label>
           <label className="text-sm">
@@ -92,21 +92,21 @@ export default function AdminBrandsPage() {
               type="number"
               value={display_order}
               onChange={(e) => setOrder(Number(e.target.value))}
-              className="mt-1 w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2"
+              className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
             />
           </label>
           <label className="text-sm">
             Logo
             <input type="file" accept="image/*" className="mt-1 block w-full text-sm" onChange={(e) => setFile(e.target.files?.[0])} />
           </label>
-          {error ? <p className="text-sm text-red-400">{error}</p> : null}
-          <button type="submit" className="rounded-xl bg-red-600 px-4 py-2 font-semibold">
+          {error ? <p className="text-sm text-red-500">{error}</p> : null}
+          <button type="submit" className="rounded-xl bg-zinc-900 px-4 py-2 font-semibold text-white">
             {editingId ? "Update brand" : "Add brand"}
           </button>
         </form>
         <div className="space-y-3">
           {rows.map((row) => (
-            <div key={row.id} className="flex items-center justify-between gap-3 rounded-xl border border-white/10 px-4 py-3">
+            <div key={row.id} className="flex items-center justify-between gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3">
               <div className="flex items-center gap-3">
                 {row.logo_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -123,7 +123,7 @@ export default function AdminBrandsPage() {
                 </button>
                 <button
                   type="button"
-                  className="text-red-400"
+                  className="text-zinc-700 hover:underline"
                   onClick={() => {
                     setEditingId(row.id);
                     setName(row.brand_name);
@@ -133,7 +133,7 @@ export default function AdminBrandsPage() {
                 >
                   Edit
                 </button>
-                <button type="button" className="text-zinc-400" onClick={() => remove(row.id)}>
+                <button type="button" className="text-zinc-500 hover:text-red-600" onClick={() => remove(row.id)}>
                   Delete
                 </button>
               </div>

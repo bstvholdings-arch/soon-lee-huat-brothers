@@ -76,7 +76,7 @@ export function PartsCatalog({ parts, whatsapp }: { parts: Part[]; whatsapp: str
                     href={whatsappLink(whatsapp, t("inquirePart", { name }))}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-2 block rounded-xl bg-emerald-500 py-2 text-center text-sm font-semibold text-black"
+                    className="mt-2 block rounded-xl bg-zinc-100 py-2 text-center text-sm font-semibold text-zinc-700"
                   >
                     {t("waInquiry")}
                   </a>

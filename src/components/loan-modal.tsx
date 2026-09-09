@@ -59,16 +59,16 @@ export function LoanProvider({
       <button
         type="button"
         onClick={() => openLoan()}
-        className="fixed bottom-5 right-5 z-40 rounded-full bg-red-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-red-900/40 hover:bg-red-500 md:bottom-8 md:right-8"
+        className="fixed bottom-5 right-5 z-40 rounded-full bg-zinc-900 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-zinc-900/20 hover:bg-zinc-700 md:bottom-8 md:right-8"
       >
         {t("floatingLoan")}
       </button>
       {open ? (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-4 sm:items-center">
-          <div className="w-full max-w-md rounded-2xl bg-zinc-950 p-5 text-white ring-1 ring-white/10">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-4 sm:items-center">
+          <div className="w-full max-w-md rounded-2xl bg-white p-5 text-zinc-900 ring-1 ring-zinc-200">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-semibold">{t("loanTitle")}</h2>
-              <button type="button" onClick={() => setOpen(false)} className="text-zinc-400 hover:text-white">
+              <button type="button" onClick={() => setOpen(false)} className="text-zinc-500 hover:text-zinc-900">
                 {t("close")}
               </button>
             </div>
@@ -78,7 +78,7 @@ export function LoanProvider({
               <Field label={t("tenure")} value={years} onChange={setYears} step={1} />
               <Field label={t("interest")} value={rate} onChange={setRate} step={0.1} />
             </div>
-            <dl className="mt-5 space-y-2 rounded-xl bg-white/5 p-4 text-sm">
+            <dl className="mt-5 space-y-2 rounded-xl bg-zinc-50 p-4 text-sm">
               <Row label={t("loanAmount")} value={formatMYR(result.principal)} />
               <Row label={t("totalInterest")} value={formatMYR(result.totalInterest)} />
               <Row label={t("monthly")} value={formatMYR(Math.round(result.monthly))} strong />
@@ -87,7 +87,7 @@ export function LoanProvider({
               href={applyHref}
               target="_blank"
               rel="noreferrer"
-              className="mt-4 flex w-full items-center justify-center rounded-xl bg-emerald-500 py-3 text-sm font-semibold text-black hover:bg-emerald-400"
+              className="mt-4 flex w-full items-center justify-center rounded-xl bg-zinc-900 py-3 text-sm font-semibold text-white hover:bg-zinc-700"
             >
               {t("applyWa")}
             </a>
@@ -134,7 +134,7 @@ function Row({ label, value, strong }: { label: string; value: string; strong?: 
   return (
     <div className="flex items-center justify-between gap-4">
       <dt className="text-zinc-500">{label}</dt>
-      <dd className={strong ? "text-base font-semibold text-red-400" : "font-medium"}>{value}</dd>
+      <dd className={strong ? "text-base font-semibold text-zinc-900" : "font-medium"}>{value}</dd>
     </div>
   );
 }

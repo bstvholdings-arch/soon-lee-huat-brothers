@@ -48,7 +48,7 @@ export function AboutView({ content }: { content: ContentMap }) {
             </a>
           ) : null}
           {waze ? (
-            <a href={waze} target="_blank" rel="noreferrer" className="rounded-xl bg-cyan-500 px-4 py-2 text-sm font-semibold text-black">
+            <a href={waze} target="_blank" rel="noreferrer" className="rounded-xl bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-700">
               {t("waze")}
             </a>
           ) : null}

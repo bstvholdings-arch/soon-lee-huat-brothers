@@ -40,10 +40,10 @@ export function AdminNav() {
               {link.label}
             </Link>
           ))}
-          <Link href="/" className="text-zinc-400 hover:text-white">
+          <Link href="/" className="text-zinc-500 hover:text-zinc-900">
             View site
           </Link>
-          <button type="button" onClick={logout} className="text-zinc-400 hover:text-white">
+          <button type="button" onClick={logout} className="text-zinc-500 hover:text-zinc-900">
             Sign out
           </button>
         </nav>
