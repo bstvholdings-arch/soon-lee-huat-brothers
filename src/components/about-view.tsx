@@ -18,16 +18,16 @@ export function AboutView({ content }: { content: ContentMap }) {
   return (
     <div className="space-y-10">
       <section>
-        <h1 className="text-3xl font-bold text-white">{t("aboutTitle")}</h1>
-        <p className="mt-2 text-sm text-red-400">{company}</p>
-        <p className="mt-4 max-w-3xl whitespace-pre-wrap text-zinc-200">{about}</p>
+        <h1 className="text-3xl font-bold text-zinc-900">{t("aboutTitle")}</h1>
+        <p className="mt-2 text-sm text-zinc-500">{company}</p>
+        <p className="mt-4 max-w-3xl whitespace-pre-wrap text-zinc-700">{about}</p>
       </section>
-      <section className="rounded-2xl border border-white/10 bg-zinc-900 p-6">
-        <h2 className="text-xl font-semibold text-white">{t("location")}</h2>
-        <div className="mt-4 space-y-2 text-zinc-200">
+      <section className="rounded-2xl border border-zinc-200 bg-white p-6">
+        <h2 className="text-xl font-semibold text-zinc-900">{t("location")}</h2>
+        <div className="mt-4 space-y-2 text-zinc-700">
           {address ? (
             <p>
-              <a href={mapLink(address)} target="_blank" rel="noreferrer" className="text-red-400 hover:underline">
+              <a href={mapLink(address)} target="_blank" rel="noreferrer" className="text-zinc-900 hover:underline">
                 {address}
               </a>
             </p>
@@ -35,7 +35,7 @@ export function AboutView({ content }: { content: ContentMap }) {
           {hours ? <p>{hours}</p> : null}
           {phone ? (
             <p>
-              <a href={telLink(phone)} className="text-red-400 hover:underline">
+              <a href={telLink(phone)} className="text-zinc-900 hover:underline">
                 {phone}
               </a>
             </p>
@@ -43,7 +43,7 @@ export function AboutView({ content }: { content: ContentMap }) {
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
           {maps ? (
-            <a href={maps} target="_blank" rel="noreferrer" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-zinc-950">
+            <a href={maps} target="_blank" rel="noreferrer" className="rounded-xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white">
               {t("maps")}
             </a>
           ) : null}
@@ -55,9 +55,9 @@ export function AboutView({ content }: { content: ContentMap }) {
         </div>
       </section>
       <section>
-        <h2 className="mb-4 text-xl font-semibold text-white">{t("gallery")}</h2>
+        <h2 className="mb-4 text-xl font-semibold text-zinc-900">{t("gallery")}</h2>
         {gallery.length === 0 ? (
-          <p className="text-zinc-400">{t("emptyGallery")}</p>
+          <p className="text-zinc-500">{t("emptyGallery")}</p>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {gallery.map((url) => (

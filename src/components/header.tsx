@@ -11,10 +11,12 @@ export function Header({
   companyName,
   phone,
   whatsapp,
+  logo,
 }: {
   companyName: string;
   phone: string;
   whatsapp: string;
+  logo?: string;
 }) {
   const { locale, setLocale, t } = useLocale();
   const { openLoan } = useLoan();
@@ -29,15 +31,21 @@ export function Header({
   ];
 
   return (
-    <header className="sticky top-0 z-30 border-b border-white/10 bg-zinc-950/95 text-white backdrop-blur">
+    <header className="sticky top-0 z-30 border-b border-zinc-200 bg-white/95 text-zinc-900 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <Link href="/" className="min-w-0">
-          <p className="truncate text-sm font-bold tracking-tight sm:text-base">{companyName}</p>
-          <p className="hidden text-xs text-zinc-400 sm:block">Kepala Batas · Penang</p>
+        <Link href="/" className="flex min-w-0 items-center gap-3">
+          {logo ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={logo} alt={companyName} className="h-10 w-10 rounded-lg object-contain" />
+          ) : null}
+          <div className="min-w-0">
+            <p className="truncate text-sm font-bold tracking-tight sm:text-base">{companyName}</p>
+            <p className="hidden text-xs text-zinc-500 sm:block">Kepala Batas · Penang</p>
+          </div>
         </Link>
         <nav className="hidden items-center gap-5 text-sm md:flex">
           {nav.map((item) => (
-            <Link key={item.href} href={item.href} className="text-zinc-300 hover:text-white">
+            <Link key={item.href} href={item.href} className="text-zinc-600 hover:text-zinc-900">
               {item.label}
             </Link>
           ))}
@@ -45,7 +53,7 @@ export function Header({
         <div className="flex items-center gap-2">
           <LanguageSwitcher locale={locale} setLocale={setLocale} />
           {phone ? (
-            <a href={telLink(phone)} className="hidden rounded-lg bg-white/10 px-3 py-2 text-xs font-medium sm:inline">
+            <a href={telLink(phone)} className="hidden rounded-lg bg-zinc-100 px-3 py-2 text-xs font-medium sm:inline">
               {phone}
             </a>
           ) : null}
@@ -53,13 +61,13 @@ export function Header({
             href={wa}
             target="_blank"
             rel="noreferrer"
-            className="rounded-lg bg-emerald-500 px-3 py-2 text-xs font-semibold text-black hover:bg-emerald-400"
+            className="rounded-lg bg-zinc-900 px-3 py-2 text-xs font-semibold text-white hover:bg-zinc-700"
           >
             WhatsApp
           </a>
           <button
             type="button"
-            className="rounded-lg border border-white/15 px-2 py-2 text-xs md:hidden"
+            className="rounded-lg border border-zinc-300 px-2 py-2 text-xs text-zinc-700 md:hidden"
             onClick={() => setOpen((v) => !v)}
           >
             {t("menu")}
@@ -67,14 +75,14 @@ export function Header({
         </div>
       </div>
       {open ? (
-        <div className="border-t border-white/10 px-4 py-3 md:hidden">
+        <div className="border-t border-zinc-200 bg-white px-4 py-3 md:hidden">
           <div className="flex flex-col gap-2 text-sm">
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="text-zinc-700">
                 {item.label}
               </Link>
             ))}
-            <button type="button" className="text-left text-red-400" onClick={() => openLoan()}>
+            <button type="button" className="text-left text-zinc-700" onClick={() => openLoan()}>
               {t("loanCta")}
             </button>
           </div>
@@ -103,7 +111,7 @@ function LanguageSwitcher({
           key={opt.id}
           type="button"
           onClick={() => setLocale(opt.id)}
-          className={`px-2 py-1.5 ${locale === opt.id ? "bg-red-600 text-white" : "text-zinc-300 hover:bg-white/10"}`}
+          className={`px-2 py-1.5 ${locale === opt.id ? "bg-zinc-900 text-white" : "text-zinc-600 hover:bg-zinc-100"}`}
         >
           {opt.label}
         </button>

@@ -76,6 +76,22 @@ export default function AdminContentPage() {
         const { error: uErr } = await supabase.from("site_content").upsert(payload, { onConflict: "section_key" });
         if (uErr) throw uErr;
       }
+      const logoRow = get("logo");
+      const { error: logoErr } = await supabase
+        .from("site_content")
+        .upsert(
+          { section_key: "logo", content_en: "", content_bm: "", content_zh: "", images: logoRow.images ?? [] },
+          { onConflict: "section_key" },
+        );
+      if (logoErr) throw logoErr;
+      const heroRow = get("hero_image");
+      const { error: heroErr } = await supabase
+        .from("site_content")
+        .upsert(
+          { section_key: "hero_image", content_en: "", content_bm: "", content_zh: "", images: heroRow.images ?? [] },
+          { onConflict: "section_key" },
+        );
+      if (heroErr) throw heroErr;
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Save failed");
@@ -92,7 +108,23 @@ export default function AdminContentPage() {
     patch("gallery", { images: [...(gallery.images ?? []), url] });
   }
 
+  async function setLogo(file?: File) {
+    if (!file) return;
+    const supabase = createBrowserSupabase();
+    const url = await uploadPublicFile(supabase, "gallery", file);
+    patch("logo", { images: [url] });
+  }
+
+  async function setHeroImage(file?: File) {
+    if (!file) return;
+    const supabase = createBrowserSupabase();
+    const url = await uploadPublicFile(supabase, "gallery", file);
+    patch("hero_image", { images: [url] });
+  }
+
   const gallery = get("gallery");
+  const logo = get("logo");
+  const heroImage = get("hero_image");
 
   return (
     <>
@@ -105,7 +137,7 @@ export default function AdminContentPage() {
             const multiline = key === "about" || key.includes("hero") || key === "address" || key === "hours";
             return (
               <fieldset key={key} className="rounded-2xl border border-white/10 p-4">
-                <legend className="px-1 text-sm font-semibold text-red-400">{key}</legend>
+                <legend className="px-1 text-sm font-semibold text-zinc-500">{key}</legend>
                 <div className="mt-3 grid gap-3">
                   <LangField
                     label="EN"
@@ -130,7 +162,7 @@ export default function AdminContentPage() {
             );
           })}
           <fieldset className="rounded-2xl border border-white/10 p-4">
-            <legend className="px-1 text-sm font-semibold text-red-400">gallery</legend>
+            <legend className="px-1 text-sm font-semibold text-zinc-500">gallery</legend>
             <input type="file" accept="image/*" className="mt-3 text-sm" onChange={(e) => void addGallery(e.target.files?.[0])} />
             <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
               {(gallery.images ?? []).map((url) => (
@@ -148,8 +180,42 @@ export default function AdminContentPage() {
               ))}
             </div>
           </fieldset>
+          <fieldset className="rounded-2xl border border-white/10 p-4">
+            <legend className="px-1 text-sm font-semibold text-zinc-500">logo</legend>
+            <input type="file" accept="image/*" className="mt-3 text-sm" onChange={(e) => void setLogo(e.target.files?.[0])} />
+            {(logo.images ?? []).map((url) => (
+              <div key={url} className="relative mt-4 inline-block">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={url} alt="logo" className="h-20 w-20 rounded-xl object-contain bg-zinc-100" />
+                <button
+                  type="button"
+                  className="absolute right-2 top-2 rounded bg-black/70 px-2 py-1 text-xs text-white"
+                  onClick={() => patch("logo", { images: [] })}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </fieldset>
+          <fieldset className="rounded-2xl border border-white/10 p-4">
+            <legend className="px-1 text-sm font-semibold text-zinc-500">hero_image</legend>
+            <input type="file" accept="image/*" className="mt-3 text-sm" onChange={(e) => void setHeroImage(e.target.files?.[0])} />
+            {(heroImage.images ?? []).map((url) => (
+              <div key={url} className="relative mt-4 inline-block">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={url} alt="hero" className="h-32 w-56 rounded-xl object-cover bg-zinc-100" />
+                <button
+                  type="button"
+                  className="absolute right-2 top-2 rounded bg-black/70 px-2 py-1 text-xs text-white"
+                  onClick={() => patch("hero_image", { images: [] })}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </fieldset>
           {error ? <p className="text-sm text-red-400">{error}</p> : null}
-          <button type="submit" disabled={saving} className="rounded-xl bg-red-600 px-5 py-2 font-semibold disabled:opacity-50">
+          <button type="submit" disabled={saving} className="rounded-xl bg-zinc-900 px-5 py-2 font-semibold text-white disabled:opacity-50">
             {saving ? "Saving..." : "Save content"}
           </button>
         </form>

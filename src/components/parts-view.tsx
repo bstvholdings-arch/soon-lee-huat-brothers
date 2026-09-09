@@ -8,7 +8,7 @@ export function PartsView({ parts, whatsapp }: { parts: Part[]; whatsapp: string
   const { t } = useLocale();
   return (
     <div>
-      <h1 className="mb-6 text-3xl font-bold text-white">{t("partsTitle")}</h1>
+      <h1 className="mb-6 text-3xl font-bold text-zinc-900">{t("partsTitle")}</h1>
       <PartsCatalog parts={parts} whatsapp={whatsapp} />
     </div>
   );

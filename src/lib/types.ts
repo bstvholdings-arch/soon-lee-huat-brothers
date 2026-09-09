@@ -6,10 +6,25 @@ export type AngleType = "main" | "exhaust" | "caliper" | "dashboard";
 export type PartStock = "in_stock" | "low" | "out";
 
 export type MotorcycleSpecs = {
+  // legacy / generic
   cc?: string;
   engine?: string;
   fuel?: string;
   notes?: string;
+  // engine description (Add motorcycle)
+  engine_type?: string;
+  cylinder_arrangement?: string;
+  bore_x_stroke?: string;
+  compression?: string;
+  maximum_power?: string;
+  maximum_torque?: string;
+  ignition_system?: string;
+  lubrication?: string;
+  engine_oil_volume?: string;
+  fuel_tank_capacity?: string;
+  fuel_system?: string;
+  ignition?: string;
+  battery_type?: string;
 };
 
 export type VehicleImage = {

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Soon Lee Huat Motor — ER Diagram</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         background:#0a0a0a; color:#e4e4e7; }
+  header { padding:24px 32px; border-bottom:1px solid #27272a; }
+  header h1 { margin:0 0 4px; font-size:20px; }
+  header p { margin:0; color:#a1a1aa; font-size:13px; }
+  .wrap { padding:24px 32px; }
+  .legend { display:flex; gap:18px; flex-wrap:wrap; margin-bottom:18px; font-size:12px; color:#a1a1aa; }
+  .legend span { display:inline-flex; align-items:center; gap:6px; }
+  .dot { width:10px; height:10px; border-radius:3px; display:inline-block; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap:16px; }
+  .card { background:#18181b; border:1px solid #27272a; border-radius:14px; padding:14px 16px; }
+  .card h2 { margin:0 0 10px; font-size:15px; display:flex; align-items:center; gap:8px; }
+  .tag { font-size:10px; padding:2px 7px; border-radius:999px; font-weight:600; letter-spacing:.03em; }
+  .t-core { background:#14241c; color:#4ade80; }
+  .t-ext  { background:#1e1b2e; color:#a78bfa; }
+  .t-order{ background:#2a1a1a; color:#f87171; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th { text-align:left; color:#71717a; font-weight:500; padding:2px 0; }
+  td { padding:2px 0; border-top:1px solid #1f1f23; }
+  .pk { color:#fbbf24; font-weight:600; }
+  .fk { color:#60a5fa; }
+  .uk { color:#c084fc; }
+  .col { color:#e4e4e7; }
+  .typ { color:#71717a; }
+  .rel { margin-top:22px; padding:16px; background:#111113; border:1px solid #27272a; border-radius:14px; }
+  .rel h3 { margin:0 0 10px; font-size:14px; }
+  .rel ul { margin:0; padding-left:18px; font-size:13px; line-height:1.7; color:#d4d4d8; }
+  .buckets { font-size:12px; color:#a1a1aa; margin-top:10px; }
+  code { background:#27272a; padding:1px 6px; border-radius:5px; font-size:11px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Soon Lee Huat Motor — Database ER Diagram</h1>
+  <p>Supabase (PostgreSQL) · ref <code>tyfcdbsiomsrramszqxc</code> · 8 tables · RLS: public read, authenticated write</p>
+</header>
+
+<div class="wrap">
+  <div class="legend">
+    <span><i class="dot" style="background:#4ade80"></i> Core catalog</span>
+    <span><i class="dot" style="background:#a78bfa"></i> API access</span>
+    <span><i class="dot" style="background:#f87171"></i> Orders</span>
+    <span><i class="dot" style="background:#fbbf24"></i> PK</span>
+    <span><i class="dot" style="background:#60a5fa"></i> FK</span>
+    <span><i class="dot" style="background:#c084fc"></i> UK</span>
+  </div>
+
+  <div class="grid">
+    <!-- motorcycles -->
+    <div class="card">
+      <h2>🏍️ motorcycles <span class="tag t-core">CORE</span></h2>
+      <table>
+        <tr><th>column</th><th>type</th></tr>
+        <tr><td class="pk">id</td><td class="typ">uuid PK</td></tr>
+        <tr><td class="col">type</td><td class="typ">text · new|used</td></tr>
+        <tr><td class="col">title_en/bm/zh</td><td class="typ">text</td></tr>
+        <tr><td class="col">price</td><td class="typ">numeric</td></tr>
+        <tr><td class="col">year / mileage</td><td class="typ">int</td></tr>
+        <tr><td class="col">specs</td><td class="typ">jsonb</td></tr>
+        <tr><td class="col">status</td><td class="typ">text · available|sold</td></tr>
+        <tr><td class="col">sku</td><td class="typ">text</td></tr>
+        <tr><td class="col">stock_quantity</td><td class="typ">int</td></tr>
+        <tr><td class="col">created_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+    </div>
+
+    <!-- vehicle_images -->
+    <div class="card">
+      <h2>🖼️ vehicle_images <span class="tag t-core">CORE</span></h2>
+      <table>
+        <tr><th>column</th><th>type</th></tr>
+        <tr><td class="pk">id</td><td class="typ">uuid PK</td></tr>
+        <tr><td class="fk">motorcycle_id</td><td class="typ">uuid FK → motorcycles</td></tr>
+        <tr><td class="col">color_name_en/bm/zh</td><td class="typ">text</td></tr>
+        <tr><td class="col">color_hex</td><td class="typ">text</td></tr>
+        <tr><td class="col">image_url</td><td class="typ">text</td></tr>
+        <tr><td class="col">is_main</td><td class="typ">bool</td></tr>
+        <tr><td class="col">angle_type</td><td class="typ">main|exhaust|caliper|dashboard</td></tr>
+        <tr><td class="col">created_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+    </div>
+
+    <!-- parts -->
+    <div class="card">
+      <h2>🔧 parts <span class="tag t-core">CORE</span></h2>
+      <table>
+        <tr><th>column</th><th>type</th></tr>
+        <tr><td class="pk">id</td><td class="typ">uuid PK</td></tr>
+        <tr><td class="col">name_en/bm/zh</td><td class="typ">text</td></tr>
+        <tr><td class="col">category</td><td class="typ">text</td></tr>
+        <tr><td class="col">applicable_model</td><td class="typ">text</td></tr>
+        <tr><td class="col">price</td><td class="typ">numeric</td></tr>
+        <tr><td class="col">image_url</td><td class="typ">text</td></tr>
+        <tr><td class="col">stock_status</td><td class="typ">in_stock|low|out</td></tr>
+        <tr><td class="col">sku</td><td class="typ">text</td></tr>
+        <tr><td class="col">stock_quantity</td><td class="typ">int</td></tr>
+        <tr><td class="col">created_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+    </div>
+
+    <!-- brands -->
+    <div class="card">
+      <h2>🏷️ brands <span class="tag t-core">CORE</span></h2>
+      <table>
+        <tr><th>column</th><th>type</th></tr>
+        <tr><td class="pk">id</td><td class="typ">uuid PK</td></tr>
+        <tr><td class="col">brand_name</td><td class="typ">text</td></tr>
+        <tr><td class="col">logo_url</td><td class="typ">text</td></tr>
+        <tr><td class="col">display_order</td><td class="typ">int</td></tr>
+      </table>
+    </div>
+
+    <!-- site_content -->
+    <div class="card">
+      <h2>📝 site_content <span class="tag t-core">CORE</span></h2>
+      <table>
+        <tr><th>column</th><th>type</th></tr>
+        <tr><td class="pk">id</td><td class="typ">uuid PK</td></tr>
+        <tr><td class="uk">section_key</td><td class="typ">text UK</td></tr>
+        <tr><td class="col">content_en</td><td class="typ">text</td></tr>
+        <tr><td class="col">content_bm</td><td class="typ">text</td></tr>
+        <tr><td class="col">content_zh</td><td class="typ">text</td></tr>
+        <tr><td class="col">images</td><td class="typ">text[]</td></tr>
+      </table>
+      <div class="buckets">keys: company_name, phone, whatsapp, company_reg, address, hours, maps_url, waze_url, hero_tagline, hero_subtitle, about, gallery</div>
+    </div>
+
+    <!-- api_keys -->
+    <div class="card">
+      <h2>🔑 api_keys <span class="tag t-ext">API</span></h2>
+      <table>
+        <tr><th>column</th><th>type</th></tr>
+        <tr><td class="pk">id</td><td class="typ">uuid PK</td></tr>
+        <tr><td class="fk">owner</td><td class="typ">uuid FK → auth.users</td></tr>
+        <tr><td class="col">name</td><td class="typ">text</td></tr>
+        <tr><td class="uk">key</td><td class="typ">text UK</td></tr>
+        <tr><td class="col">revoked</td><td class="typ">bool</td></tr>
+        <tr><td class="col">created_at</td><td class="typ">timestamptz</td></tr>
+        <tr><td class="col">last_used_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+    </div>
+
+    <!-- orders -->
+    <div class="card">
+      <h2>📦 orders <span class="tag t-order">ORDER</span></h2>
+      <table>
+        <tr><th>column</th><th>type</th></tr>
+        <tr><td class="pk">id</td><td class="typ">uuid PK</td></tr>
+        <tr><td class="uk">order_number</td><td class="typ">text UK · SLH-YYYYMMDD-xxxxxx</td></tr>
+        <tr><td class="col">buyer_name</td><td class="typ">text</td></tr>
+        <tr><td class="col">buyer_email / phone</td><td class="typ">text</td></tr>
+        <tr><td class="col">shipping_address</td><td class="typ">jsonb</td></tr>
+        <tr><td class="col">status</td><td class="typ">pending_shipment|shipped|delivered|cancelled</td></tr>
+        <tr><td class="col">external_ref</td><td class="typ">text</td></tr>
+        <tr><td class="col">notes</td><td class="typ">text</td></tr>
+        <tr><td class="col">created_at</td><td class="typ">timestamptz</td></tr>
+      </table>
+    </div>
+
+    <!-- order_items -->
+    <div class="card">
+      <h2>📋 order_items <span class="tag t-order">ORDER</span></h2>
+      <table>
+        <tr><th>column</th><th>type</th></tr>
+        <tr><td class="pk">id</td><td class="typ">uuid PK</td></tr>
+        <tr><td class="fk">order_id</td><td class="typ">uuid FK → orders</td></tr>
+        <tr><td class="col">product_type</td><td class="typ">motorcycle|part</td></tr>
+        <tr><td class="col">sku</td><td class="typ">text (→ motorcycles/parts.sku)</td></tr>
+        <tr><td class="col">name</td><td class="typ">text</td></tr>
+        <tr><td class="col">quantity</td><td class="typ">int</td></tr>
+        <tr><td class="col">unit_price</td><td class="typ">numeric</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="rel">
+    <h3>Relationships</h3>
+    <ul>
+      <li><b>motorcycles</b> 1 — N <b>vehicle_images</b> (on delete cascade)</li>
+      <li><b>orders</b> 1 — N <b>order_items</b> (on delete cascade)</li>
+      <li><b>auth.users</b> 1 — N <b>api_keys</b> (owner)</li>
+      <li><b>order_items.sku</b> → links to <b>motorcycles.sku</b> / <b>parts.sku</b> (no FK; validated in <code>create_order()</code> SECURITY DEFINER)</li>
+      <li>External v1 API authenticates via <b>api_keys</b> (Bearer) — no FK to orders</li>
+    </ul>
+    <div class="buckets">Storage buckets (public): <code>vehicle-images</code> · <code>part-images</code> · <code>brand-logos</code> · <code>gallery</code></div>
+  </div>
+</div>
+</body>
+</html>

@@ -21,8 +21,8 @@ export function MotorcycleCard({
   if (bike.mileage != null) tags.push(`${bike.mileage.toLocaleString()} ${t("km")}`);
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-sm">
-      <div className="relative aspect-[4/3] bg-zinc-800">
+    <article className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
+      <div className="relative aspect-[4/3] bg-zinc-100">
         {image?.image_url ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={image.image_url} alt={title} className="h-full w-full object-cover" />
@@ -30,20 +30,21 @@ export function MotorcycleCard({
           <div className="flex h-full items-center justify-center text-sm text-zinc-500">—</div>
         )}
         {bike.status === "sold" ? (
-          <span className="absolute left-3 top-3 rounded-full bg-zinc-950/80 px-3 py-1 text-xs font-semibold uppercase">
+          <span className="absolute left-3 top-3 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-semibold uppercase text-white">
             {t("sold")}
           </span>
         ) : null}
       </div>
       <div className="space-y-3 p-4">
         <div>
-          <h3 className="text-lg font-semibold text-white">{title}</h3>
-          <p className="mt-1 text-xl font-bold text-red-400">{formatMYR(Number(bike.price))}</p>
+          <h3 className="text-lg font-semibold text-zinc-900">{title}</h3>
+          <p className="text-xs font-medium text-zinc-500">{t("priceFrom")}</p>
+          <p className="text-xl font-bold text-zinc-900">{formatMYR(Number(bike.price))}</p>
         </div>
         {tags.length ? (
           <div className="flex flex-wrap gap-1.5">
             {tags.map((tag) => (
-              <span key={tag} className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-zinc-200">
+              <span key={tag} className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600">
                 {tag}
               </span>
             ))}
@@ -52,7 +53,7 @@ export function MotorcycleCard({
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           <Link
             href={`/motorcycles/${bike.id}`}
-            className="rounded-xl bg-white px-3 py-2 text-center text-sm font-semibold text-zinc-950"
+            className="rounded-xl bg-zinc-900 px-3 py-2 text-center text-sm font-semibold text-white"
           >
             {t("viewDetails")}
           </Link>

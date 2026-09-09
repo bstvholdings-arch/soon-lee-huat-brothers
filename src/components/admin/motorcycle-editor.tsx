@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AdminNav } from "@/components/admin/admin-nav";
+import { useLocale } from "@/components/locale-provider";
 import { createBrowserSupabase } from "@/lib/supabase/client";
 import { uploadPublicFile } from "@/lib/upload";
 import type { AngleType, Motorcycle, MotorcycleType, StockStatus, VehicleImage } from "@/lib/types";
@@ -50,6 +51,7 @@ function fromDb(img: VehicleImage): ImageDraft {
 
 export function MotorcycleEditor({ initial }: { initial?: Motorcycle }) {
   const router = useRouter();
+  const { t } = useLocale();
   const [type, setType] = useState<MotorcycleType>(initial?.type ?? "new");
   const [title_en, setTitleEn] = useState(initial?.title_en ?? "");
   const [title_bm, setTitleBm] = useState(initial?.title_bm ?? "");
@@ -61,6 +63,19 @@ export function MotorcycleEditor({ initial }: { initial?: Motorcycle }) {
   const [engine, setEngine] = useState(initial?.specs?.engine ?? "");
   const [fuel, setFuel] = useState(initial?.specs?.fuel ?? "");
   const [notes, setNotes] = useState(initial?.specs?.notes ?? "");
+  const [engineType, setEngineType] = useState(initial?.specs?.engine_type ?? "");
+  const [cylinderArr, setCylinderArr] = useState(initial?.specs?.cylinder_arrangement ?? "");
+  const [boreStroke, setBoreStroke] = useState(initial?.specs?.bore_x_stroke ?? "");
+  const [compression, setCompression] = useState(initial?.specs?.compression ?? "");
+  const [maxPower, setMaxPower] = useState(initial?.specs?.maximum_power ?? "");
+  const [maxTorque, setMaxTorque] = useState(initial?.specs?.maximum_torque ?? "");
+  const [ignitionSystem, setIgnitionSystem] = useState(initial?.specs?.ignition_system ?? "");
+  const [lubrication, setLubrication] = useState(initial?.specs?.lubrication ?? "");
+  const [oilVolume, setOilVolume] = useState(initial?.specs?.engine_oil_volume ?? "");
+  const [tankCapacity, setTankCapacity] = useState(initial?.specs?.fuel_tank_capacity ?? "");
+  const [fuelSystem, setFuelSystem] = useState(initial?.specs?.fuel_system ?? "");
+  const [ignition, setIgnition] = useState(initial?.specs?.ignition ?? "");
+  const [batteryType, setBatteryType] = useState(initial?.specs?.battery_type ?? "");
   const [status, setStatus] = useState<StockStatus>(initial?.status ?? "available");
   const [sku, setSku] = useState(initial?.sku ?? "");
   const [stockQuantity, setStockQuantity] = useState(Number(initial?.stock_quantity ?? 0));
@@ -84,7 +99,25 @@ export function MotorcycleEditor({ initial }: { initial?: Motorcycle }) {
         price,
         year: year ? Number(year) : null,
         mileage: mileage ? Number(mileage) : null,
-        specs: { cc, engine, fuel, notes },
+        specs: {
+          cc,
+          engine,
+          fuel,
+          notes,
+          engine_type: engineType,
+          cylinder_arrangement: cylinderArr,
+          bore_x_stroke: boreStroke,
+          compression,
+          maximum_power: maxPower,
+          maximum_torque: maxTorque,
+          ignition_system: ignitionSystem,
+          lubrication,
+          engine_oil_volume: oilVolume,
+          fuel_tank_capacity: tankCapacity,
+          fuel_system: fuelSystem,
+          ignition,
+          battery_type: batteryType,
+        },
         status,
         sku,
         stock_quantity: Number(stockQuantity),
@@ -157,6 +190,22 @@ export function MotorcycleEditor({ initial }: { initial?: Motorcycle }) {
         <Field label="CC" value={cc} onChange={setCc} />
         <Field label="Engine" value={engine} onChange={setEngine} />
         <Field label="Fuel" value={fuel} onChange={setFuel} />
+      </div>
+      <h2 className="mt-2 font-semibold">{t("engineSpecs")}</h2>
+      <div className="grid gap-4 md:grid-cols-2">
+        <Field label={t("engineType")} value={engineType} onChange={setEngineType} />
+        <Field label={t("cylinderArrangement")} value={cylinderArr} onChange={setCylinderArr} />
+        <Field label={t("boreStroke")} value={boreStroke} onChange={setBoreStroke} />
+        <Field label={t("compression")} value={compression} onChange={setCompression} />
+        <Field label={t("maximumPower")} value={maxPower} onChange={setMaxPower} />
+        <Field label={t("maximumTorque")} value={maxTorque} onChange={setMaxTorque} />
+        <Field label={t("ignitionSystem")} value={ignitionSystem} onChange={setIgnitionSystem} />
+        <Field label={t("lubrication")} value={lubrication} onChange={setLubrication} />
+        <Field label={t("engineOilVolume")} value={oilVolume} onChange={setOilVolume} />
+        <Field label={t("fuelTankCapacity")} value={tankCapacity} onChange={setTankCapacity} />
+        <Field label={t("fuelSystem")} value={fuelSystem} onChange={setFuelSystem} />
+        <Field label={t("ignition")} value={ignition} onChange={setIgnition} />
+        <Field label={t("batteryType")} value={batteryType} onChange={setBatteryType} />
         <Field label="SKU" value={sku} onChange={setSku} placeholder="e.g. MTR-2024-001" />
         <Field label="Stock quantity" value={String(stockQuantity)} onChange={(v) => setStockQuantity(Number(v))} type="number" />
       </div>
@@ -367,6 +416,7 @@ export function MotorcycleList() {
                 <th className="px-4 py-3">Title</th>
                 <th className="px-4 py-3">Type</th>
                 <th className="px-4 py-3">Price</th>
+                <th className="px-4 py-3">Engine</th>
                 <th className="px-4 py-3">Status</th>
                 <th className="px-4 py-3"></th>
               </tr>
@@ -377,6 +427,7 @@ export function MotorcycleList() {
                   <td className="px-4 py-3">{row.title_en}</td>
                   <td className="px-4 py-3">{row.type}</td>
                   <td className="px-4 py-3">{row.price}</td>
+                  <td className="px-4 py-3">{(row.specs as { engine_type?: string } | undefined)?.engine_type ?? "—"}</td>
                   <td className="px-4 py-3">{row.status}</td>
                   <td className="px-4 py-3 text-right">
                     <Link href={`/admin/motorcycles/${row.id}`} className="mr-3 text-red-400">

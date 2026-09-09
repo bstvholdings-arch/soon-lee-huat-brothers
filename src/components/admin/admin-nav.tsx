@@ -27,7 +27,7 @@ export function AdminNav() {
   }
 
   return (
-    <header className="border-b border-white/10 bg-zinc-950">
+    <header className="border-b border-zinc-200 bg-white">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
         <p className="text-sm font-semibold">SLH Admin CMS</p>
         <nav className="flex flex-wrap gap-3 text-sm">
@@ -35,7 +35,7 @@ export function AdminNav() {
             <Link
               key={link.href}
               href={link.href}
-              className={pathname === link.href ? "text-red-400" : "text-zinc-300 hover:text-white"}
+              className={pathname === link.href ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"}
             >
               {link.label}
             </Link>

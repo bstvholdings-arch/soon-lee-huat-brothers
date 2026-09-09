@@ -117,14 +117,14 @@ function Field({
 }) {
   return (
     <label className="block text-sm">
-      <span className="mb-1 block text-zinc-400">{label}</span>
+      <span className="mb-1 block text-zinc-500">{label}</span>
       <input
         type="number"
         min={0}
         step={step}
         value={Number.isFinite(value) ? value : 0}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-white outline-none focus:border-red-500"
+        className="w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900 outline-none focus:border-zinc-900"
       />
     </label>
   );
@@ -133,7 +133,7 @@ function Field({
 function Row({ label, value, strong }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="flex items-center justify-between gap-4">
-      <dt className="text-zinc-400">{label}</dt>
+      <dt className="text-zinc-500">{label}</dt>
       <dd className={strong ? "text-base font-semibold text-red-400" : "font-medium"}>{value}</dd>
     </div>
   );

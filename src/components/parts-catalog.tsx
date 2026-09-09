@@ -31,12 +31,12 @@ export function PartsCatalog({ parts, whatsapp }: { parts: Part[]; whatsapp: str
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder={t("search")}
-          className="rounded-xl border border-white/10 bg-zinc-900 px-4 py-3 text-white outline-none focus:border-red-500"
+          className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-zinc-900 outline-none focus:border-zinc-900"
         />
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="rounded-xl border border-white/10 bg-zinc-900 px-4 py-3 text-white"
+          className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-zinc-900"
         >
           {categories.map((c) => (
             <option key={c} value={c}>
@@ -46,14 +46,14 @@ export function PartsCatalog({ parts, whatsapp }: { parts: Part[]; whatsapp: str
         </select>
       </div>
       {filtered.length === 0 ? (
-        <p className="text-zinc-400">{t("emptyParts")}</p>
+        <p className="text-zinc-500">{t("emptyParts")}</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {filtered.map((part) => {
             const name = partName(part, locale);
             return (
-              <article key={part.id} className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900">
-                <div className="aspect-square bg-zinc-800">
+              <article key={part.id} className="overflow-hidden rounded-2xl border border-zinc-200 bg-white">
+                <div className="aspect-square bg-zinc-100">
                   {part.image_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={part.image_url} alt={name} className="h-full w-full object-cover" />
@@ -62,15 +62,16 @@ export function PartsCatalog({ parts, whatsapp }: { parts: Part[]; whatsapp: str
                   )}
                 </div>
                 <div className="space-y-2 p-4">
-                  <p className="text-xs uppercase tracking-wide text-red-400">{part.category}</p>
-                  <h3 className="font-semibold text-white">{name}</h3>
+                  <p className="text-xs uppercase tracking-wide text-zinc-500">{part.category}</p>
+                  <h3 className="font-semibold text-zinc-900">{name}</h3>
                   {part.applicable_model ? (
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-sm text-zinc-500">
                       {t("applicable")}: {part.applicable_model}
                     </p>
                   ) : null}
-                  <p className="text-lg font-bold text-red-400">{formatMYR(Number(part.price))}</p>
-                  <p className="text-xs text-zinc-400">{stockLabel(part.stock_status)}</p>
+                  <p className="text-xs font-medium text-zinc-500">{t("priceFrom")}</p>
+                  <p className="text-lg font-bold text-zinc-900">{formatMYR(Number(part.price))}</p>
+                  <p className="text-xs text-zinc-500">{stockLabel(part.stock_status)}</p>
                   <a
                     href={whatsappLink(whatsapp, t("inquirePart", { name }))}
                     target="_blank"
