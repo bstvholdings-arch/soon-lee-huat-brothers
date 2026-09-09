@@ -36,7 +36,7 @@ export function Header({
         <Link href="/" className="flex min-w-0 items-center gap-3">
           {logo ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={logo} alt={companyName} className="h-20 w-20 rounded-lg object-contain" />
+            <img src={logo} alt={companyName} className="h-40 w-40 rounded-lg object-contain" />
           ) : null}
           <div className="min-w-0">
             <p className="truncate text-sm font-bold tracking-tight text-blue-600 sm:text-base">{companyName}</p>

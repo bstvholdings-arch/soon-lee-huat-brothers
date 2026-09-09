@@ -53,7 +53,7 @@ export function MotorcycleCard({
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           <Link
             href={`/motorcycles/${bike.id}`}
-            className="rounded-xl bg-zinc-900 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-zinc-700"
+            className="rounded-xl bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-blue-700"
           >
             {t("viewDetails")}
           </Link>
@@ -61,7 +61,7 @@ export function MotorcycleCard({
             href={whatsappLink(whatsapp, t("inquireBike", { name: title }))}
             target="_blank"
             rel="noreferrer"
-            className="rounded-xl bg-zinc-100 px-3 py-2 text-center text-sm font-semibold text-zinc-700"
+            className="rounded-xl bg-[#25D366] px-3 py-2 text-center text-sm font-semibold text-white hover:bg-[#1ebe5d]"
           >
             {t("waInquiry")}
           </a>
