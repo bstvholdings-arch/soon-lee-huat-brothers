@@ -40,7 +40,7 @@ export function Header({
           ) : null}
           <div className="min-w-0">
             <p className="truncate text-sm font-bold tracking-tight text-blue-600 sm:text-base">{companyName}</p>
-            <p className="hidden text-xs text-zinc-500 sm:block">Kepala Batas · Penang</p>
+            <p className="hidden text-xs font-medium text-red-500 sm:block">Kepala Batas · Penang</p>
           </div>
         </Link>
         <nav className="hidden items-center gap-5 text-sm md:flex">
@@ -61,7 +61,7 @@ export function Header({
             href={wa}
             target="_blank"
             rel="noreferrer"
-            className="rounded-lg bg-cyan-500 px-3 py-2 text-xs font-semibold text-white hover:bg-cyan-600"
+            className="rounded-lg bg-[#25D366] px-3 py-2 text-xs font-semibold text-white hover:bg-[#1ebe5d]"
           >
             WhatsApp
           </a>
@@ -105,13 +105,13 @@ function LanguageSwitcher({
     { id: "zh", label: "中文" },
   ];
   return (
-    <div className="flex overflow-hidden rounded-lg border border-zinc-200 text-xs font-semibold">
+    <div className="flex overflow-hidden rounded-lg border border-red-200 text-xs font-semibold">
       {options.map((opt) => (
         <button
           key={opt.id}
           type="button"
           onClick={() => setLocale(opt.id)}
-          className={`px-2 py-1.5 ${locale === opt.id ? "bg-zinc-900 text-white" : "text-zinc-600 hover:bg-zinc-100"}`}
+          className={`px-2 py-1.5 ${locale === opt.id ? "bg-red-600 text-white" : "text-zinc-600 hover:bg-red-50"}`}
         >
           {opt.label}
         </button>

@@ -23,8 +23,8 @@ export function HomeHero({
   const { openLoan } = useLoan();
   return (
     <section className="overflow-hidden rounded-3xl border border-zinc-200 bg-white p-6 sm:p-10">
-      <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">Kepala Batas · Penang</p>
-      <h1 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-zinc-900 sm:text-5xl">{companyName}</h1>
+      <p className="text-sm font-medium uppercase tracking-[0.2em] text-red-500">Kepala Batas · Penang</p>
+      <h1 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-blue-600 sm:text-5xl">{companyName}</h1>
       {companyReg ? (
         <p className="mt-2 text-sm font-medium text-zinc-500">{companyReg}</p>
       ) : null}
@@ -34,7 +34,7 @@ export function HomeHero({
         <button
           type="button"
           onClick={() => openLoan()}
-          className="rounded-xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-700"
+          className="rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white hover:bg-red-500"
         >
           {t("loanCta")}
         </button>
@@ -42,7 +42,7 @@ export function HomeHero({
           href={whatsappLink(whatsapp, "Hi, I would like to enquire about a motorcycle.")}
           target="_blank"
           rel="noreferrer"
-          className="rounded-xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-700"
+          className="rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white hover:bg-[#1ebe5d]"
         >
           WhatsApp
         </a>
