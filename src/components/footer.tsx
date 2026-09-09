@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useLocale } from "./locale-provider";
-import { mapLink } from "@/lib/i18n";
 
 export function Footer({ companyName, address }: { companyName: string; address: string }) {
   const { t } = useLocale();
@@ -16,9 +15,7 @@ export function Footer({ companyName, address }: { companyName: string; address:
           {address ? (
             <>
               <span className="mx-2">·</span>
-              <a href={mapLink(address)} target="_blank" rel="noreferrer" className="hover:text-zinc-900 hover:underline">
-                {address}
-              </a>
+              {address}
             </>
           ) : null}
         </p>
