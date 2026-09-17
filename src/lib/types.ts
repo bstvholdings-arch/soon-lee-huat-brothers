@@ -88,3 +88,14 @@ export type SiteContent = {
 };
 
 export type ContentMap = Record<string, SiteContent>;
+
+export type FeedbackStatus = "pending" | "approved" | "rejected";
+
+export type Feedback = {
+  id: string;
+  name: string;
+  rating: number | null;
+  message: string;
+  status: FeedbackStatus;
+  created_at: string;
+};

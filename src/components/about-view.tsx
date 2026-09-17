@@ -3,6 +3,7 @@
 import { contentText, telLink } from "@/lib/i18n";
 import type { ContentMap } from "@/lib/types";
 import { useLocale } from "./locale-provider";
+import { FeedbackSection } from "./feedback-section";
 
 export function AboutView({ content }: { content: ContentMap }) {
   const { locale, t } = useLocale();
@@ -21,6 +22,7 @@ export function AboutView({ content }: { content: ContentMap }) {
         <p className="mt-2 text-sm text-zinc-500">{company}</p>
         <p className="mt-4 max-w-3xl whitespace-pre-wrap text-zinc-700">{about}</p>
       </section>
+      <FeedbackSection />
       <section className="rounded-2xl border border-zinc-200 bg-white p-6">
         <h2 className="text-xl font-semibold text-zinc-900">{t("location")}</h2>
         <div className="mt-4 space-y-2 text-zinc-700">
