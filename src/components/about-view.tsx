@@ -14,19 +14,9 @@ export function AboutView({ content }: { content: ContentMap }) {
   const maps = contentText(content, "maps_url", locale);
   const waze = contentText(content, "waze_url", locale);
   const gallery = content.gallery?.images ?? [];
-  const aboutHero = content["about_hero"]?.images?.[0];
 
   return (
     <div className="space-y-10">
-      {/* hero photo slot — same size as the home page hero */}
-      <div className="flex min-h-[320px] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50 sm:min-h-[420px]">
-        {aboutHero ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={aboutHero} alt="" className="h-full w-full object-cover" />
-        ) : (
-          <span className="text-sm text-zinc-500">About hero photo</span>
-        )}
-      </div>
       <section>
         <h1 className="text-3xl font-bold text-zinc-900">{t("aboutTitle")}</h1>
         <p className="mt-2 text-sm text-zinc-500">{company}</p>
