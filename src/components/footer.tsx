@@ -18,9 +18,9 @@ export function Footer({
 }) {
   const { t } = useLocale();
   const socials = [
-    { label: "Facebook", href: facebookUrl, icon: "facebook" },
-    { label: "TikTok", href: tiktokUrl, icon: "tiktok" },
-    { label: "Instagram", href: instagramUrl, icon: "instagram" },
+    { label: "Facebook", href: facebookUrl, icon: "facebook", btnClass: "bg-[#1877F2] hover:bg-[#166FE5]" },
+    { label: "TikTok", href: tiktokUrl, icon: "tiktok", btnClass: "bg-black hover:bg-zinc-800" },
+    { label: "Instagram", href: instagramUrl, icon: "instagram", btnClass: "bg-gradient-to-br from-[#FEDA75] via-[#DD2A7B] to-[#4F5BD5] hover:opacity-90" },
   ].filter((s) => s.href);
   return (
     <footer className="mt-auto border-t border-zinc-200 bg-white px-4 py-8 text-sm text-zinc-500">
@@ -45,7 +45,7 @@ export function Footer({
               rel="noreferrer"
               aria-label={s.label}
               title={s.label}
-              className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-600 text-white hover:bg-red-500"
+              className={`flex h-9 w-9 items-center justify-center rounded-lg text-white ${s.btnClass}`}
             >
               <SocialIcon name={s.icon} />
             </a>
