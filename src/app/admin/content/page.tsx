@@ -19,7 +19,12 @@ const KEYS = [
   "hero_subtitle",
   "about",
   "gallery",
+  "facebook_url",
+  "tiktok_url",
+  "instagram_url",
 ] as const;
+
+const URL_KEYS = new Set(["maps_url", "waze_url", "facebook_url", "tiktok_url", "instagram_url"]);
 
 export default function AdminContentPage() {
   const [rows, setRows] = useState<SiteContent[]>([]);
@@ -135,6 +140,7 @@ export default function AdminContentPage() {
           {KEYS.filter((k) => k !== "gallery").map((key) => {
             const row = get(key);
             const multiline = key === "about" || key.includes("hero") || key === "address" || key === "hours";
+            const isUrl = URL_KEYS.has(key as string);
             return (
               <fieldset key={key} className="rounded-2xl border border-zinc-200 bg-white p-4">
                 <legend className="px-1 text-sm font-semibold text-zinc-500">{key}</legend>
@@ -213,6 +219,25 @@ export default function AdminContentPage() {
                 </button>
               </div>
             ))}
+          </fieldset>
+          <fieldset className="rounded-2xl border border-zinc-200 bg-white p-4">
+            <legend className="px-1 text-sm font-semibold text-zinc-500">Social links</legend>
+            <div className="mt-3 grid gap-3">
+              {["facebook_url", "tiktok_url", "instagram_url"].map((key) => {
+                const row = get(key);
+                return (
+                  <label key={key} className="block text-sm">
+                    {key.replace("_url", "")}
+                    <input
+                      value={row.content_en}
+                      onChange={(e) => patch(key, { content_en: e.target.value })}
+                      placeholder={`https://${key.replace("_url", "")}.com/your-page`}
+                      className="mt-1 w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-zinc-900"
+                    />
+                  </label>
+                );
+              })}
+            </div>
           </fieldset>
           {error ? <p className="text-sm text-red-500">{error}</p> : null}
           <button type="submit" disabled={saving} className="rounded-xl bg-zinc-900 px-5 py-2 font-semibold text-white disabled:opacity-50">
