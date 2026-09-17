@@ -127,9 +127,17 @@ export default function AdminContentPage() {
     patch("hero_image", { images: [url] });
   }
 
+  async function setAboutHero(file?: File) {
+    if (!file) return;
+    const supabase = createBrowserSupabase();
+    const url = await uploadPublicFile(supabase, "gallery", file);
+    patch("about_hero", { images: [url] });
+  }
+
   const gallery = get("gallery");
   const logo = get("logo");
   const heroImage = get("hero_image");
+  const aboutHero = get("about_hero");
 
   return (
     <>
@@ -214,6 +222,23 @@ export default function AdminContentPage() {
                   type="button"
                   className="absolute right-2 top-2 rounded bg-black/70 px-2 py-1 text-xs text-white"
                   onClick={() => patch("hero_image", { images: [] })}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </fieldset>
+          <fieldset className="rounded-2xl border border-zinc-200 bg-white p-4">
+            <legend className="px-1 text-sm font-semibold text-zinc-500">about_hero</legend>
+            <input type="file" accept="image/*" className="mt-3 text-sm" onChange={(e) => void setAboutHero(e.target.files?.[0])} />
+            {(aboutHero.images ?? []).map((url) => (
+              <div key={url} className="relative mt-4 inline-block">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={url} alt="about hero" className="h-32 w-56 rounded-xl object-cover bg-zinc-100" />
+                <button
+                  type="button"
+                  className="absolute right-2 top-2 rounded bg-black/70 px-2 py-1 text-xs text-white"
+                  onClick={() => patch("about_hero", { images: [] })}
                 >
                   Remove
                 </button>
