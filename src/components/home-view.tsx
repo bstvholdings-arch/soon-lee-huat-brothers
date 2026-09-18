@@ -33,7 +33,7 @@ export function HomeView({
       <div className="flex h-[36vh] max-h-[320px] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50 sm:h-[42vh] sm:max-h-[380px]">
         {heroImage ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={heroImage} alt="" className="h-full w-full object-cover" />
+          <img src={heroImage} alt="" className="h-full w-full object-contain" />
         ) : (
           <span className="text-sm text-zinc-500">Hero photo</span>
         )}

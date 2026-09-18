@@ -15,7 +15,7 @@ export function UsedBikesView({ content, bikes }: { content: ContentMap; bikes: 
       <div className="flex h-[36vh] max-h-[320px] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50 sm:h-[42vh] sm:max-h-[380px]">
         {usedHero ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={usedHero} alt="" className="h-full w-full object-cover" />
+          <img src={usedHero} alt="" className="h-full w-full object-contain" />
         ) : (
           <span className="text-sm text-zinc-500">Used bikes hero photo</span>
         )}
