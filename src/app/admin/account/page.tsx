@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createBrowserSupabase, isSupabaseConfigured } from "@/lib/supabase/client";
 import { AdminNav } from "@/components/admin/admin-nav";
 
 export default function AdminAccountPage() {
+  const router = useRouter();
   const configured = isSupabaseConfigured();
   const [currentEmail, setCurrentEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -59,7 +61,7 @@ export default function AdminAccountPage() {
       const { error: err } = await supabase.auth.updateUser({ email: newEmail });
       if (err) throw err;
       setMsg(
-        `Confirmation sent to ${newEmail}. Click the link in that email to finish changing your login email.`,
+        `Confirmation sent to ${newEmail}. Click the link in that email to finish changing your login email. Until you confirm, you still sign in with the current email.`,
       );
       setNewEmail("");
     } catch (err) {
@@ -69,11 +71,30 @@ export default function AdminAccountPage() {
     }
   }
 
+  async function onSignOut() {
+    try {
+      const supabase = createBrowserSupabase();
+      await supabase.auth.signOut();
+    } catch {
+      /* ignore */
+    }
+    router.replace("/admin/login");
+  }
+
   return (
     <>
       <AdminNav />
       <div className="mx-auto max-w-2xl space-y-6 px-4 py-8">
-        <h1 className="text-2xl font-bold">Account</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold">Account</h1>
+          <button
+            type="button"
+            onClick={onSignOut}
+            className="rounded-xl border border-zinc-200 px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-50"
+          >
+            Sign out
+          </button>
+        </div>
         {!configured ? (
           <p className="text-sm text-amber-400">
             Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local, then restart the
@@ -130,7 +151,7 @@ export default function AdminAccountPage() {
           onSubmit={onChangeEmail}
           className="space-y-4 rounded-2xl border border-zinc-200 bg-white p-5"
         >
-          <h2 className="text-lg font-semibold">Change email</h2>
+          <h2 className="text-lg font-semibold">Change login email (ID)</h2>
           <label className="block text-sm">
             New email
             <input
@@ -143,6 +164,7 @@ export default function AdminAccountPage() {
           </label>
           <p className="text-xs text-zinc-500">
             A confirmation link will be sent to the new email. The change takes effect after you click it.
+            Your admin role is tied to your account (not the email), so you keep admin access after the email change.
           </p>
           <button
             type="submit"
