@@ -29,11 +29,11 @@ export function HomeView({
   const heroImage = content["hero_image"]?.images?.[0];
   return (
     <div>
-      {/* hero photo slot — full screen width, 66.67vh tall, cover */}
-      <div className="relative left-1/2 -translate-x-1/2 flex w-screen h-[66.67vh] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50">
+      {/* hero photo slot — show full original image, min height 320/420px */}
+      <div className="flex min-h-[320px] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50 sm:min-h-[420px]">
         {heroImage ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={heroImage} alt="" className="h-full w-full object-cover" />
+          <img src={heroImage} alt="" className="h-full w-full object-contain" />
         ) : (
           <span className="text-sm text-zinc-500">Hero photo</span>
         )}
