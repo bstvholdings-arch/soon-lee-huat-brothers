@@ -11,8 +11,8 @@ export function UsedBikesView({ content, bikes }: { content: ContentMap; bikes: 
   const whatsapp = contentText(content, "whatsapp", "en") || contentText(content, "phone", "en");
   return (
     <div>
-      {/* hero photo slot — full-bleed, filled (cover), taller height */}
-      <div className="relative left-1/2 -ml-[50vw] flex w-screen h-[36vh] max-h-[570px] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50 sm:h-[42vh] sm:max-h-[800px]">
+      {/* hero photo slot — 80vw wide, 150vh tall (3/2 screen), filled */}
+      <div className="relative left-1/2 -translate-x-1/2 flex w-[80vw] h-[150vh] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50">
         {usedHero ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={usedHero} alt="" className="h-full w-full object-cover" />
