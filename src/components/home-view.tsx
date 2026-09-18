@@ -29,8 +29,8 @@ export function HomeView({
   const heroImage = content["hero_image"]?.images?.[0];
   return (
     <div>
-      {/* hero photo slot — 80vw wide, 150vh tall (3/2 screen), filled */}
-      <div className="relative left-1/2 -translate-x-1/2 flex w-[80vw] h-[150vh] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50">
+      {/* hero photo slot — full screen width, 66.67vh tall, cover */}
+      <div className="relative left-1/2 -translate-x-1/2 flex w-screen h-[66.67vh] items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50">
         {heroImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" className="h-full w-full object-cover" />
