@@ -225,7 +225,7 @@ export default function AdminContentPage() {
             {(heroImage.images ?? []).map((url) => (
               <div key={url} className="relative mt-4 inline-block">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={url} alt="hero" className="h-32 w-56 rounded-xl object-contain bg-zinc-100" />
+                <img src={url} alt="hero" className="mt-3 w-full max-h-64 rounded-xl object-contain bg-zinc-100" />
                 <button
                   type="button"
                   className="absolute right-2 top-2 rounded bg-black/70 px-2 py-1 text-xs text-white"
@@ -242,7 +242,7 @@ export default function AdminContentPage() {
             {(usedHero.images ?? []).map((url) => (
               <div key={url} className="relative mt-4 inline-block">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={url} alt="used hero" className="h-32 w-56 rounded-xl object-contain bg-zinc-100" />
+                <img src={url} alt="used hero" className="mt-3 w-full max-h-64 rounded-xl object-contain bg-zinc-100" />
                 <button
                   type="button"
                   className="absolute right-2 top-2 rounded bg-black/70 px-2 py-1 text-xs text-white"
